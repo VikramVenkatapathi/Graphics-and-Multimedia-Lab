@@ -1,0 +1,99 @@
+Steps to follow for each GM lab project in lab
+
+-> Open visual studio 2008, file->new->project
+-> Project type: visual C++ -> Win32, Templates: Win32 Console Application
+-> Enter project name and click ok, win32 application wizard opens up. Click on next
+-> Choose empty project under additional options and click finish
+
+-> Right click on source files in solution explorer on left and add a new c++ item
+-> Right click project name and select properties
+-> Choose c/c++ in config properties
+-> add item to additional include directories using 3 dots
+-> click on new folder and click on the 3 dots icon
+-> browse and go to the extracted files (in desktop)
+-> go to lp/glew and glut/freeglut/include folder and lp/glew and glut/glew-1.11.0/include folder
+-> then choose linker from left and cick on 3 dots in additional library dir.dll
+-> go to lp/glew and glut/freeglut/lib folder and lp/glew and glut/glew-1.11.0/lib
+-> Click on linker dropdown in lhs and choose input, in additional dependencies include freeglut.lib and glew32.lib
+-> right click on the project in visual studio and open folder in windows explorer
+-> copy paste the 2 dll files from lp/glew and glut into the project folder
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+vector<pair<int, int>> vertices;
+vector<vector<double>> Transform(3, vector<double>(3, 0));
+
+glVertex2d(xv_min + (coordinates[i].first - xw_min) * sx,yv_min + (coordinates[i].second - yw_min) * sy);
+
+sx = (xv_max - xv_min) * 1.0 / (xw_max - xw_min);
+sy = (yv_max - yv_min) * 1.0 / (yw_max - yw_min);
+
+#include<GL/glut.h>	//for graphics operation
+#include<stdlib.h>	//basic funcs for file
+#include<iostream>	//for cout, cin
+#include<vector>	//for vector operations - bits/stdc will only worl in CODE-BLOCKS
+
+void myInit()
+{
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);		//clear buffers to preset values
+	glClearColor(1.0, 1.0, 1.0, 1.0 );						//clears the buffer to the color
+	glPointSize(2.0);										//sets the points size of the pixels
+	//glEnable(GL_DEPTH_TEST);								//enable or disable server-side GL capabilities
+	glMatrixMode(GL_PROJECTION);							//specify which matrix is the current matrix
+	glLoadIdentity();										// replace the current matrix with the identity matrix
+	gluOrtho2D(-700.0,700.0,-700.0,700);					// define a 2D orthographic projection matrix - left, right, bottom, top
+
+}
+void myDisplay()
+{
+	glClear(GL_COLOR_BUFFER_BIT);
+	glColor3f(255.0f / 255.0f, 0.0f / 255.0f, 0.0f / 255.0f);
+	
+	
+	glFlush();						/* force execution of GL commands in finite time ;
+									empties all these buffers, causing all issued commands to be executed as quickly*/
+}
+int main(int argc, char* argv[]) {
+	glutInit(&argc, argv);							//used to initialize the GLUT library
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);	//sets the initial display mode.
+	glutInitWindowSize(700, 700);					//inits window size - width , height
+	glutCreateWindow("Sample");						//creates window with name in parameter
+	glutDisplayFunc(myDisplay);						//sets the display callback for the current window
+	myInit();
+	glutMainLoop();
+	return 1;
+}
